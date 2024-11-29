@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8">
+  <title>Developers</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="Homepage.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: white;
+    }
+
+    nav {
+      background: #0082e6;
+      height: 70px;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 20px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    nav .logo {
+      color: white;
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      margin: 0;
+      padding: 0;
+    }
+
+    nav ul li {
+      margin: 0 15px;
+    }
+
+    nav ul li a {
+      text-decoration: none;
+      color: white;
+      font-size: 18px;
+    }
+
+    nav ul li a.active,
+    nav ul li a:hover {
+      color: #fbfcfe;
+    }
+
+    .profiles-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 50px;
+      padding: 20px;
+      max-width: 1200px;
+      margin: 20px auto;
+    }
+
+    .profile-card {
+      background: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
+
+    .profile-picture {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      margin-bottom: 15px;
+    }
+
+    footer {
+      background: #0082e6;
+      color: #fff;
+      text-align: center;
+      padding: 10px;
+      margin-top: 110px;
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <input type="checkbox" id="check">
+    <label for="check" class="checkbtn">
+      <i class="fas fa-bars"></i>
+    </label>
+    <label class="logo">CCAJYV</label>
+    <ul>
+      <li><a href="Homepage.html">Home</a></li>
+      <li><a href="Aboutpage.html">About</a></li>
+      <li><a class="active" href="#">Developers</a></li>
+      <li><a href="others.html">Other Numbers</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <div class="profiles-container">
+      <div class="profile-card">
+        <img src="C:\Users\pc\Downloads\457014407_1042309317351533_3357900049340717248_n.jpg" alt="Developer 1" class="profile-picture">
+        <h2>Yeoj Kaye E. Belardo</h2>
+        <h3>12-Escoda</h3>
+      </div>
+      <div class="profile-card">
+        <img src="C:\Users\pc\Downloads\462569636_1117011880105628_280416614976586881_n.jpg" alt="Developer 2" class="profile-picture">
+        <h2>Janna Jane B. Brutas</h2>
+        <h3>12-Escoda</h3>
+      </div>
+      <div class="profile-card">
+        <img src="C:\Users\pc\Downloads\462559221_1270827250783245_4197387818216545669_n.jpg" alt="Developer 3" class="profile-picture">
+        <h2>Vince Errol P. Queyquep</h2>
+        <h3>12-Escoda</h3>
+      </div>
+      <div class="profile-card">
+        <img src="C:\Users\pc\Downloads\465568082_466227523148924_3222290578169735788_n.jpg" alt="Developer 4" class="profile-picture">
+        <h2>Cris Lauren Callo</h2>
+        <h3>12-Escoda</h3>
+      </div>
+      <div class="profile-card">
+        <img src="C:\Users\pc\Downloads\313000457_1186223725570982_6143592016793824475_n.jpg" alt="Developer 5" class="profile-picture">
+        <h2>Angelo Tagalog</h2>
+        <h3>12-Escoda</h3>
+      </div>
+      <div class="profile-card">
+        <img src="C:\Users\pc\Downloads\459545056_3830296887290052_8208032949406737931_n.jpg" alt="Developer 6" class="profile-picture">
+        <h2>Christian Neri</h2>
+        <h3>12-Escoda</h3>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy; 2024 CCAJYV. All rights reserved.</p>
+  </footer>
+</body>
+</html>
