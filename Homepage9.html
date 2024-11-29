@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Home</title>
+  <link rel="stylesheet" href="Homepage.css">
+</head>
+<body>
+  <nav>
+    <input type="checkbox" id="check">
+    <label for="check" class="checkbtn">
+      <i class="fas fa-bars"></i>
+    </label>
+    <label class="logo">CCAJYV</label>
+    <ul>
+      <li><a class="active" href="#">Home</a></li>
+      <li><a href="Aboutpage.html">About</a></li>
+      <li><a href="Developers.html">Developers</a></li>
+      <li><a href="others.html">Other Numbers</a></li>
+    </ul>
+  </nav>
+
+  <style>
+    #content {
+      display: none;
+    }
+    ul.checklist {
+      list-style-type: none;
+      padding: 0;
+    }
+    ul.checklist li {
+      margin-bottom: 10px;
+    }
+    #savedData {
+      margin-top: 20px;
+    }
+  </style>
+
+  <link rel="stylesheet" href="button.css">
+  <button class="btn" id="toggleButton">Laptop #9</button>
+  <div id="content">
+    <form style="text-align: center;" id="checklistForm">
+      <h3>DATE AND TIME OF CHECKING</h3>
+      <ul class="checklist" id="checklist">
+        <li>
+          <input type="datetime-local" class="datetime">
+          <input type="datetime-local" class="datetime">
+        </li>
+      </ul>
+      <button type="button" class="btn" id="saveButton">Save Changes</button>
+      <button type="button" class="btn" id="editButton" style="display: none;">Edit</button>
+      <button type="button" class="btn" id="addRowButton">Add Row</button>
+      <button type="button" class="btn" id="clearDataButton">Clear Saved Data</button>
+    </form>
+
+    <div id="savedData"></div>
+  </div>
+
+  <script>
+    const button = document.getElementById('toggleButton');
+    const content = document.getElementById('content');
+    const saveButton = document.getElementById('saveButton');
+    const editButton = document.getElementById('editButton');
+    const addRowButton = document.getElementById('addRowButton');
+    const clearDataButton = document.getElementById('clearDataButton');
+    const savedDataDiv = document.getElementById('savedData');
+
+    button.addEventListener('click', () => {
+      if (content.style.display === 'none') {
+        content.style.display = 'block';
+        button.textContent = 'Hide';
+      } else {
+        content.style.display = 'none';
+        button.textContent = 'Laptop #9';
+      }
+    });
+
+    saveButton.addEventListener('click', () => {
+      const formData = [];
+      const dateTimes = document.querySelectorAll('.datetime');
+
+      for (let i = 0; i < dateTimes.length; i += 2) {
+        const datetime1 = dateTimes[i];
+        const datetime2 = dateTimes[i + 1];
+
+        if (datetime1 && datetime2) {
+          formData.push({
+            datetime1: datetime1.value,
+            datetime2: datetime2.value
+          });
+        }
+      }
+
+      localStorage.setItem('checklistData', JSON.stringify(formData));
+
+      console.log("Form data saved:", formData);
+      alert("Data saved successfully!");
+      toggleEditMode(false);
+      displaySavedData();
+    });
+
+    editButton.addEventListener('click', () => {
+      toggleEditMode(true);
+    });
+
+    addRowButton.addEventListener('click', () => {
+      const li = document.createElement('li');
+      li.innerHTML = `
+        <input type="datetime-local" class="datetime">
+        <input type="datetime-local" class="datetime">
+      `;
+      checklist.appendChild(li);
+    });
+
+    clearDataButton.addEventListener('click', () => {
+      if (confirm("Are you sure you want to clear all saved data?")) {
+        localStorage.removeItem('checklistData');
+        savedDataDiv.innerHTML = "<p>No data saved.</p>";
+        alert("Saved data has been cleared.");
+      }
+    });
+
+    function toggleEditMode(isEditable) {
+      const inputs = checklistForm.querySelectorAll('input');
+      inputs.forEach(input => {
+        input.disabled = !isEditable;
+      });
+
+      saveButton.style.display = isEditable ? 'inline-block' : 'none';
+      editButton.style.display = isEditable ? 'none' : 'inline-block';
+      addRowButton.style.display = isEditable ? 'inline-block' : 'none';
+    }
+
+    function displaySavedData() {
+      const formData = JSON.parse(localStorage.getItem('checklistData'));
+      if (formData && formData.length > 0) {
+        let savedHTML = "<h3>Saved Data:</h3><ul>";
+        formData.forEach(item => {
+          savedHTML += `
+            <li>
+              Checked ${item.datetime1} 
+              <br>
+              Checked${item.datetime2}
+            </li>
+          `;
+        });
+        savedHTML += "</ul>";
+        savedDataDiv.innerHTML = savedHTML;
+      } else {
+        savedDataDiv.innerHTML = "<p>No data saved.</p>";
+      }
+    }
+
+    function populateSavedData() {
+      const formData = JSON.parse(localStorage.getItem('checklistData'));
+      if (formData) {
+        formData.forEach((item, index) => {
+          const row = checklist.children[index];
+          if (row) {
+            const datetime1 = row.querySelectorAll('.datetime')[0];
+            const datetime2 = row.querySelectorAll('.datetime')[1];
+
+            datetime1.value = item.datetime1;
+            datetime2.value = item.datetime2;
+          }
+        });
+      }
+    }
+    window.onload = () => {
+      displaySavedData();
+      populateSavedData();
+    };
+  </script>
+</body>
+</html>
